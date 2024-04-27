@@ -1,0 +1,41 @@
+// Variables
+
+$container-color: #1a1e21;
+$secondary-color: #fd8f44;
+$text-color: #172317;
+$bg-color: #fff;
+
+@import 'components/__components';
+@import 'pages/__pages';
+@import 'utils/__utils';
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  width: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+section {
+  padding: 3rem;
+}
+
+.container {
+  max-width: 1068px;
+  margin: auto;
+  width: 100%;
+}

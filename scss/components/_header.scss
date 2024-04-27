@@ -1,0 +1,48 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+
+  &.shadow {
+    background: $bg-color;
+    transition: 0.4s;
+    box-shadow: 0 1px 4px hsl(0 4% 14% / 10%);
+    .logo {
+      color: $text-color !important;
+    }
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $bg-color;
+
+      span {
+        color: $secondary-color;
+      }
+    }
+
+    .login,
+    .register {
+      padding: 8px 14px;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-radius: 4px;
+      background-color: $secondary-color;
+      color: $bg-color;
+
+      &:hover {
+        background: hsl(24, 98%, 58%);
+        transition: 0.3s;
+      }
+    }
+  }
+}
