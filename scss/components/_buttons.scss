@@ -1,0 +1,13 @@
+.btn-custom {
+  padding: 8px 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: $secondary-color;
+  color: $bg-color;
+
+  &:hover {
+    background: hsl(24, 98%, 58%);
+    transition: 0.3s;
+  }
+}

@@ -1,0 +1,41 @@
+.hero {
+  color: $bg-color;
+  .home-text {
+    text-align: center;
+  }
+
+  .home-title {
+    font-size: 3.5rem;
+  }
+
+  .home-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  &.home {
+    width: 100%;
+    min-height: 440px;
+    background-color: $container-color;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.alt {
+    width: 100%;
+    min-height: 340px;
+    background-color: $container-color;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.error {
+    width: 100%;
+    min-height: 340px;
+    background-color: $container-color;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+}

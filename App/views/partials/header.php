@@ -29,8 +29,9 @@
 
       <div class="btn-container">
         <!-- Login Button -->
-        <a href="#" class="login">Login</a>
-        <a href="#" class="register">Register</a>
+        <a href="/posts/create" class="btn-custom">Create</a>
+        <a href="#" class="btn-custom">Login</a>
+        <a href="#" class="btn-custom">Register</a>
       </div>
     </div>
   </header>

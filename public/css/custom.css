@@ -27,20 +27,6 @@ header .nav .logo {
 header .nav .logo span {
   color: #fd8f44;
 }
-header .nav .login,
-header .nav .register {
-  padding: 8px 14px;
-  text-transform: uppercase;
-  font-weight: 500;
-  border-radius: 4px;
-  background-color: #fd8f44;
-  color: #fff;
-}
-header .nav .login:hover,
-header .nav .register:hover {
-  background: hsl(24, 98%, 58%);
-  transition: 0.3s;
-}
 
 .footer {
   display: flex;
@@ -64,6 +50,19 @@ header .nav .register:hover {
 .footer .social .bx:hover {
   color: #fd8f44;
   transition: 0.3s all linear;
+}
+
+.btn-custom {
+  padding: 8px 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: #fd8f44;
+  color: #fff;
+}
+.btn-custom:hover {
+  background: hsl(24, 98%, 58%);
+  transition: 0.3s;
 }
 
 .post {
@@ -139,7 +138,20 @@ header .nav .register:hover {
   font-weight: 500;
 }
 
-.home {
+.hero {
+  color: #fff;
+}
+.hero .home-text {
+  text-align: center;
+}
+.hero .home-title {
+  font-size: 3.5rem;
+}
+.hero .home-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.hero.home {
   width: 100%;
   min-height: 440px;
   background-color: #1a1e21;
@@ -147,16 +159,21 @@ header .nav .register:hover {
   justify-content: center;
   align-items: center;
 }
-.home .home-text {
-  color: #fff;
-  text-align: center;
+.hero.alt {
+  width: 100%;
+  min-height: 340px;
+  background-color: #1a1e21;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
-.home .home-title {
-  font-size: 3.5rem;
-}
-.home .home-subtitle {
-  font-size: 1rem;
-  font-weight: 400;
+.hero.error {
+  width: 100%;
+  min-height: 340px;
+  background-color: #1a1e21;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 .post-filter {
