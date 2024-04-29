@@ -1,6 +1,7 @@
 <?php
 
-
+namespace Framework;
+use App\Controllers\ErrorController;
 
 class Router {
   protected $routes = [];
@@ -9,30 +10,20 @@ class Router {
      * Add a new route
      * @param string $method
      * @param string $uri
-     * @param string $controller
+     * @param string $action
      * @return void
      */
 
-  public function registerRoute($method, $uri, $controller) {
+  public function registerRoute($method, $uri, $action) {
+    list($controller, $controllerMethod) = explode('@', $action);
+
     $this->routes[] = [
       'method' => $method,
       'uri' => $uri,
-      'controller' => $controller
+      'controller' => $controller,
+      'controllerMethod' => $controllerMethod
     ];
   }
-
-  /**
-   * Load error page
-   * @param int $httpCode
-   * @return void
-   * 
-   */
-
-   public function error($httpCode = 404) {
-    http_response_code($httpCode);
-    loadView("error/{$httpCode}");
-    exit;
-   }
 
   /**
    * Add a GET Route
@@ -88,14 +79,56 @@ class Router {
    * @return void
    */
 
-   public function route($uri, $method) {
+   public function route($uri) {
+    $requestMethod = $_SERVER['REQUEST_METHOD'];
+
+    
     foreach($this->routes as $route) {
-      if($route['uri'] === $uri && $route['method'] === $method) {
-        require basePath($route['controller']);
-        return;
+      // Split the current URI into segments
+      $uriSegments = explode('/', trim($uri, '/'));
+
+      // Split the route URI into segments
+      $routeSegments = explode('/', trim($route['uri'], '/'));
+
+      $match = true;
+
+       // Check if the number of segments matches
+      if (count($uriSegments) === count($routeSegments) && strtoupper($route['method'] === $requestMethod)) {
+        $params = [];
+
+        $match = true;
+
+        for ($i = 0; $i < count($uriSegments); $i++) {
+          // If the uri's do not match and there is no value in curly braces
+          if ($routeSegments[$i] !== $uriSegments[$i] && !preg_match('/\{(.+?)\}/', $routeSegments[$i])) {
+            $match = false;
+            break;
+          }
+
+          // Check for the param and add to $params array
+
+          if (preg_match('/\{(.+?)\}/', $routeSegments[$i], $matches)) {
+            $params[$matches[1]] = $uriSegments[$i];
+          }
+        }
+
+        if ($match) {
+          // foreach ($route['middleware'] as $middleware) {
+          //   (new Authorize())->handle($middleware);
+          // }
+          // Extract controller and controller method
+          $controller = 'App\\Controllers\\' . $route['controller'];
+          $controllerMethod = $route['controllerMethod'];
+
+          // Instantiate controller and call method
+          $controllerInstance = new $controller();
+          $controllerInstance->$controllerMethod($params);
+          return;
+        }
+
       }
     }
 
-    $this->error();
+    ErrorController::notFound();
    }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "skoolboi434/php-blog",
+  "description": "Vanilla PHP Blog",
+  "authors": [
+    {
+      "name": "Travis Davis",
+      "email": "skoolboi434@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}

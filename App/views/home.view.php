@@ -22,7 +22,7 @@
   <div class="post-box <?php echo $post->category; ?>">
     <img src="<?php echo $post->image; ?>" alt="" class="post-img">
     <h2 class="category"><?php echo $post->category; ?></h2>
-    <a href="/posts?id=<?php echo $post->id; ?>" class="post-title">
+    <a href="/posts/<?php echo $post->id; ?>" class="post-title">
       <?php echo $post->title; ?>
     </a>
     <span
