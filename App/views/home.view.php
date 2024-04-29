@@ -7,13 +7,14 @@
   </div>
 </section>
 
+
 <!-- Post Filter -->
 <div class="post-filter container">
   <span class="filter-item active-filter" data-filter='all'>All</span>
-  <span class="filter-item" data-filter='tech'>Tech</span>
-  <span class="filter-item" data-filter='automotive'>Automotive</span>
-  <span class="filter-item" data-filter='mobile'>Mobile</span>
-  <span class="filter-item" data-filter='lorem'>Lorem</span>
+  <?php foreach ($categories as $category): ?>
+  <span class="filter-item"
+    data-filter='<?php echo $category->category; ?>'><?php echo $category->category; ?></span>
+  <?php endforeach ?>
 </div>
 
 <!-- Posts -->

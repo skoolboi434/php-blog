@@ -187,6 +187,7 @@ header .nav .logo span {
 .post-filter .filter-item {
   font-size: 0.9rem;
   font-weight: 500;
+  text-transform: uppercase;
   cursor: pointer;
 }
 .post-filter .filter-item.active-filter {

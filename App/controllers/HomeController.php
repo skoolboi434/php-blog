@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use Framework\Database;
 
+use Traits\CategoryTrait;
+
 class HomeController {
 
   protected $db;
@@ -12,6 +14,8 @@ class HomeController {
     $config = require basePath('config/db.php');
     $this->db = new Database($config);
   }
+
+  use CategoryTrait;
 
     /**
      * Show latest listings
@@ -22,8 +26,11 @@ class HomeController {
     
     $posts = $this->db->query('SELECT * FROM posts LIMIT 8')->fetchAll();
 
+    $categories = $this->getUniqueCategories($this->db);
+
     loadView('home', [
-      'posts' => $posts
+      'posts' => $posts,
+      'categories' => $categories
     ]);
   }
 
