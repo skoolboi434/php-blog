@@ -16,89 +16,21 @@
 
 <!-- Posts -->
 <section class="post container">
-  <div class="post-box mobile">
-    <img src="img/post-1.jpg" alt="" class="post-img">
-    <h2 class="category">Mobile</h2>
-    <a href="/post-page.php" class="post-title">
-      How To Create Best UX Design With Figma
+  <?php foreach($posts as $post) : ?>
+  <div class="post-box <?php echo $post->category; ?>">
+    <img src="<?php echo $post->image; ?>" alt="" class="post-img">
+    <h2 class="category"><?php echo $post->category; ?></h2>
+    <a href="/posts?id=<?php echo $post->id; ?>" class="post-title">
+      <?php echo $post->title; ?>
     </a>
-    <span class="post-date">12 Feb 2024</span>
-    <p class="post-description">Lorem ipsum dolor, sit amet consectetur
-      adipisicing elit. Dolorum soluta excepturi doloribus ad sed quam
-      praesentium vitae? Quas, numquam, fugit quod deleniti aperiam molestias
-      distinctio fuga sunt esse natus placeat.</p>
+    <span
+      class="post-date"><?php echo date('F j, Y', strtotime($post->createdAt)); ?></span>
+    <p class="post-description"><?php echo $post->content; ?></p>
     <div class="profile">
-      <img src="img/profile-1.jpg" alt="" class="profile-img">
+      <img src="<?php echo $post->thumbnail; ?>" alt="" class="profile-img">
       <span class="profile-name">MKBHD</span>
     </div>
   </div>
-
-  <div class="post-box tech">
-    <img src="img/post-2.jpg" alt="" class="post-img">
-    <h2 class="category">Tech</h2>
-    <a href="/post-page.php" class="post-title">
-      How To Create Best UX Design With Figma
-    </a>
-    <span class="post-date">12 Feb 2024</span>
-    <p class="post-description">Lorem ipsum dolor, sit amet consectetur
-      adipisicing elit. Dolorum soluta excepturi doloribus ad sed quam
-      praesentium vitae? Quas, numquam, fugit quod deleniti aperiam molestias
-      distinctio fuga sunt esse natus placeat.</p>
-    <div class="profile">
-      <img src="img/profile-1.jpg" alt="" class="profile-img">
-      <span class="profile-name">MKBHD</span>
-    </div>
-  </div>
-
-  <div class="post-box automotive">
-    <img src="img/post-3.jpg" alt="" class="post-img">
-    <h2 class="category">Automotive</h2>
-    <a href="/post-page.php" class="post-title">
-      How To Create Best UX Design With Figma
-    </a>
-    <span class="post-date">12 Feb 2024</span>
-    <p class="post-description">Lorem ipsum dolor, sit amet consectetur
-      adipisicing elit. Dolorum soluta excepturi doloribus ad sed quam
-      praesentium vitae? Quas, numquam, fugit quod deleniti aperiam molestias
-      distinctio fuga sunt esse natus placeat.</p>
-    <div class="profile">
-      <img src="img/profile-1.jpg" alt="" class="profile-img">
-      <span class="profile-name">MKBHD</span>
-    </div>
-  </div>
-
-  <div class="post-box mobile">
-    <img src="img/post-4.jpg" alt="" class="post-img">
-    <h2 class="category">Mobile</h2>
-    <a href="/post-page.php" class="post-title">
-      How To Create Best UX Design With Figma
-    </a>
-    <span class="post-date">12 Feb 2024</span>
-    <p class="post-description">Lorem ipsum dolor, sit amet consectetur
-      adipisicing elit. Dolorum soluta excepturi doloribus ad sed quam
-      praesentium vitae? Quas, numquam, fugit quod deleniti aperiam molestias
-      distinctio fuga sunt esse natus placeat.</p>
-    <div class="profile">
-      <img src="img/profile-1.jpg" alt="" class="profile-img">
-      <span class="profile-name">MKBHD</span>
-    </div>
-  </div>
-
-  <div class="post-box tech">
-    <img src="img/post-5.jpg" alt="" class="post-img">
-    <h2 class="category">Tech</h2>
-    <a href="/post-page.php" class="post-title">
-      How To Create Best UX Design With Figma
-    </a>
-    <span class="post-date">12 Feb 2024</span>
-    <p class="post-description">Lorem ipsum dolor, sit amet consectetur
-      adipisicing elit. Dolorum soluta excepturi doloribus ad sed quam
-      praesentium vitae? Quas, numquam, fugit quod deleniti aperiam molestias
-      distinctio fuga sunt esse natus placeat.</p>
-    <div class="profile">
-      <img src="img/profile-1.jpg" alt="" class="profile-img">
-      <span class="profile-name">MKBHD</span>
-    </div>
-  </div>
+  <?php endforeach; ?>
 </section>
 <?php loadPartial('footer'); ?>
