@@ -12,6 +12,12 @@ header {
     .logo {
       color: $text-color !important;
     }
+
+    .welcome-container {
+      span {
+        color: $text-color !important;
+      }
+    }
   }
 
   .nav {

@@ -13,6 +13,9 @@ header.shadow {
 header.shadow .logo {
   color: #172317 !important;
 }
+header.shadow .welcome-container span {
+  color: #172317 !important;
+}
 header .nav {
   display: flex;
   align-items: center;
@@ -247,7 +250,7 @@ header .nav .logo span {
   -o-object-position: center;
      object-position: center;
 }
-.post-header .header-content .create-form-container {
+.post-header .header-content .custom-form-container {
   background-color: #fff;
   width: 100%;
   min-height: 420px;

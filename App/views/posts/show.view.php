@@ -25,6 +25,7 @@
     <?php loadPartial('message'); ?>
   </div>
   <p class="post-text"><?php echo $post->content; ?></p>
+  <?php if(Framework\Authorization::isOwner($post->userId)) : ?>
   <div class="btn-container text-center d-flex justify-content-center">
     <a href="/posts/edit/<?php echo $post->id; ?>"
       class="btn btn-custom">Edit</a>
@@ -34,6 +35,7 @@
     </form>
 
   </div>
+  <?php endif ; ?>
 </section>
 
 <?php require '../App/views/partials/footer.php'; ?>

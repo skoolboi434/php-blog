@@ -24,7 +24,7 @@ class HomeController {
 
   public function index() {
     
-    $posts = $this->db->query('SELECT * FROM posts LIMIT 8')->fetchAll();
+    $posts = $this->db->query('SELECT * FROM posts ORDER BY createdAt DESC LIMIT 8')->fetchAll();
 
     $categories = $this->getUniqueCategories($this->db);
 

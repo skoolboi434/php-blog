@@ -4,6 +4,7 @@
   <div class="home-text container">
     <h2 class="home-title">The Random Blog</h2>
     <span class="home-subtitle">Your source for great random content</span>
+
   </div>
 </section>
 
@@ -39,7 +40,7 @@
     <p class="post-description"><?php echo $post->content; ?></p>
     <div class="profile">
       <!-- <img src="<?php //echo $post->thumbnail; ?>" alt="" class="profile-img"> -->
-      <!-- <span class="profile-name">MKBHD</span> -->
+      <span class="profile-name"></span>
     </div>
   </div>
   <?php endforeach; ?>

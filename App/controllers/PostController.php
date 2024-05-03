@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use Framework\Session;
 use Framework\Database;
 use Framework\Validation;
+use Framework\Authorization;
 use PDO;
 
 use Traits\CategoryTrait;
@@ -20,14 +22,11 @@ class PostController {
     $this->db = new Database($config);
   }
 
-  public function index() {
+  public function index($params) {
     $categories = $this->getUniqueCategories($this->db);
     
     // Fetch all posts as associative arrays
-    $posts = $this->db->query('SELECT * FROM posts')->fetchAll();
-
-    // Fetch user names for each post
-    
+    $posts = $this->db->query('SELECT * FROM posts ORDER BY createdAt DESC')->fetchAll();
 
     loadView('posts/index', [
       'posts' => $posts,
@@ -85,9 +84,9 @@ class PostController {
 
     $newPostData = array_intersect_key($_POST, array_flip($allowedFields));
 
-    $newPostData['userId'] = 4;
-
     $newPostData = array_map('sanitize', $newPostData);
+
+    $newPostData['userId'] = Session::get('user')['userId'];
 
     $requiredFields = [
       'title',
@@ -173,6 +172,8 @@ class PostController {
 
       $this->db->query($query, $newPostData);
 
+      Session::setFlashMessage('success_message', 'Post created successfully.');
+
       redirect("/posts");
     }
   }
@@ -192,15 +193,23 @@ class PostController {
 
     $post = $this->db->query('SELECT * FROM posts WHERE id = :id', $params)->fetch();
 
+    // Check if post exists
     if(!$post) {
       ErrorController::notFound('Post not found');
       return;
     }
 
+    // Authorization
+    if(!Authorization::isOwner($post->userId)) {
+      
+      Session::setFlashMessage('error_message', 'You are not authorized to delete this post.');
+      return redirect('/posts/' . $post->id);
+    }
+
     $this->db->query('DELETE FROM posts WHERE id = :id', $params);
 
     // Set flash message
-    $_SESSION['success_message'] = 'Post deleted successfully.';
+    Session::setFlashMessage('success_message', 'Post deleted successfully.');
 
     redirect('/posts');
   }
@@ -212,6 +221,8 @@ class PostController {
      */
 
   public function edit($params) {
+    
+
     $id = $params['id'];
 
     $params = [
@@ -224,6 +235,11 @@ class PostController {
     if(!$post) {
       ErrorController::notFound('Post not found.');
       return;
+    }
+    if(!Authorization::isOwner($post->userId)) {
+      
+      Session::setFlashMessage('error_message', 'You are not authorized to edit this post.');
+      return redirect('/posts/' . $post->id);
     }
 
     loadView('posts/edit', [
@@ -249,6 +265,12 @@ class PostController {
     if(!$post) {
       ErrorController::notFound('Post not found');
       return;
+    }
+
+    if(!Authorization::isOwner($post->userId)) {
+      
+      Session::setFlashMessage('error_message', 'You are not authorized to update this post.');
+      return redirect('/posts/' . $post->id);
     }
 
     $allowedFields = [
@@ -338,10 +360,12 @@ class PostController {
 
       $this->db->query($updateQuery, $updateValues);
 
-      $_SESSION['success_message'] = 'Post Updated';
+      Session::setFlashMessage('success_message', 'Post updated successfully.');
 
       redirect('/posts/' . $id);
 
   }
   }
+
+  
 }
